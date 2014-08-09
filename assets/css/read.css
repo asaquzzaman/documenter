@@ -1,0 +1,54 @@
+.doc-read-wrap {
+	width: 100%
+}
+.doc-read-menu, .doc-read-content {
+	float: left;
+}
+.doc-read-content {
+	width: 65%;
+	margin-left: 10px;
+}
+.doc-clear {
+	clear: both;
+}
+.doc-read-menu {
+	background: #fff;
+    width: 180px;
+	border: 1px solid #eaeaea;
+	margin-right: 15px;
+}
+
+.doc-read-menu ol {
+	margin: 0 !important;
+	padding: 0 !important;
+
+}
+
+.doc-read-menu ol li {
+	background: #eee;
+    list-style-type: none;
+    margin: 2px;
+    padding-left: 5px;
+	cursor: pointer;
+}
+
+.doc-read-menu ol li > ol {
+	display: none;
+}
+
+.doc-read-menu ol li:hover > ol {
+	display: block;
+}
+
+.doc-read-menu ol li:hover > ol li {
+	margin: 0;
+    padding: 0;
+}
+.doc-section-title {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+.doc-read-content-scroll {
+	margin-left: 33%;
+}
