@@ -7,7 +7,6 @@
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-edit', this.SectionEdit );
             this.initContent();
 
-            //$('.doc-read-menu').stickyMojo({footerID: '.doc-clear', contentID: '.doc-read-content'});
             this.docScroll();
 
         },

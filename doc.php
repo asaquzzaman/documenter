@@ -75,7 +75,7 @@ class Wp_doc {
     }
 
 	function register_post_type() {
-        //var_dump($_POST['content'], $_POST['section_desc']); die();
+
 		register_post_type( 'doc_documenter', array(
             'label' => __( 'documenter', 'doc' ),
             'description' => __( 'documenter', 'doc' ),
