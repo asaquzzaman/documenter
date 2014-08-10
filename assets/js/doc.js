@@ -7,12 +7,17 @@
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-edit', this.SectionEdit );
             this.initContent();
 
-            this.docScroll();
+                this.docScroll();
+
+
 
         },
 
         docScroll: function() {
 
+            if ( !$('.doc-read-menu').length ) {
+                return;
+            }
             var menu_lis = $('.doc-read-menu').find('li'),
                 li_id = [];
             $.each( menu_lis, function( index, value ) {
@@ -58,10 +63,15 @@
 
                     if ( window_top > content_top ) {
 
-                        menu_lis.not(item_number).removeAttr('style');
-                        item_number.closest('ol').show();
-                        item_number.css({
-                            background: 'red',
+                        menu_lis.not(item_number).find('.doc-menu-text-wrap').removeAttr('style');
+                        menu_lis.not(item_number).find('.doc-menu-text-wrap').find('a').removeAttr('style');
+
+                        item_number.find('.doc-menu-text-wrap').first().css({
+                            'background': '#BCBCBC',
+                            'border-left' : '2px solid #000',
+                        });
+                        item_number.find('.doc-menu-text-wrap').first().find('a').css({
+                            'color' : '#fff'
                         });
 
                     }
@@ -72,7 +82,6 @@
         },
 
         initContent: function() {
-            console.log( $('.doc-section-wrap').find('textarea[name="section_desc"]') );
             $('input[name="section_title"]').val('').attr('placeholder', 'Section Title');
             //$('.doc-section-wrap').find('textarea[name="section_desc"]').html('Section Description');
         },

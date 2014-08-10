@@ -1,3 +1,28 @@
 .fa-arrows-alt {
 	font-size: 11px;
 }
+.doc-section-menu-wrap .doc-dd-handle {
+	cursor: move;
+	color: #9c9c9c;
+}
+.doc-section-menu-wrap li {
+	position: relative;
+}
+
+.doc-section-menu-wrap .doc-delete {
+	float: right;
+	color: #9c9c9c;
+	cursor: pointer;
+}
+.doc-section-menu-wrap .doc-section-edit a {
+	text-decoration: none;
+	color: #000;
+}
+.doc-section-menu-wrap .doc-menu-action-wrap {
+	float: left;
+    margin-right: 9px;
+}
+
+.doc-clear {
+	clear: both;
+}

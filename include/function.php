@@ -46,13 +46,19 @@ function doc_get_section_menu( $doc_id ) {
                 ?>
                 <li class="doc-dd-item doc-item-<?php echo $post_id; ?>" data-id="<?php echo $post_id; ?>">
                     <div class="doc-menu-text-wrap">
-                        <i class="doc-dd-handle   fa fa-arrows-alt"></i>
+                        <div class="doc-delete"><i class="fa fa-times doc-section-delete"></i></div>
                         <span class="doc-section-edit">
                             <a href="<?php echo '#doc-cotent-id-' . $post_id; ?>">
                                 <?php echo doc_excerpt( $section[$post_id]->post_title, 20 ); ?>
                             </a>
+
                         </span>
-                        <i class="fa fa-times doc-section-delete"></i>
+
+                        <div class="doc-menu-action-wrap">
+                            <i class="doc-dd-handle   fa fa-arrows-alt"></i>
+
+                        </div>
+                        <div class="doc-clear"></div>
                     </div>
                     <?php
                     if ( array_key_exists( $post_id, $menu['child'] ) ) {
@@ -79,13 +85,19 @@ function doc_show_child_menu( $post_id, $section, $menu_child ) {
             ?>
             <li class="doc-dd-item doc-item-<?php echo $section[$id]->ID; ?>" data-id="<?php echo $section[$id]->ID; ?>">
                 <div class="doc-menu-text-wrap">
-                    <i class="doc-dd-handle fa fa-arrows-alt"></i>
+                    <div class="doc-delete"><i class="fa fa-times doc-section-delete"></i></div>
                     <span class="doc-section-edit">
                         <a href="<?php echo '#doc-cotent-id-' . $id; ?>">
                         <?php echo doc_excerpt( $section[$id]->post_title, 15 ); ?>
                         </a>
+
                     </span>
-                    <i class="fa fa-times doc-section-delete"></i>
+
+                    <div class="doc-menu-action-wrap">
+                        <i class="doc-dd-handle fa fa-arrows-alt"></i>
+
+                    </div>
+                    <div class="doc-clear"></div>
                 </div>
                 <?php
                 if ( array_key_exists( $id, $menu_child ) ) {

@@ -61,10 +61,11 @@ class Wp_doc {
         wp_localize_script( 'doc-scripts', 'doc', array(
             'ajax_url'    => admin_url( 'admin-ajax.php' ),
             '_wpnonce'    => wp_create_nonce( 'doc_nonce' ),
+            'is_admin'    => is_admin() ? true : false,
         ));
 
         wp_enqueue_style( 'nestable', plugins_url( 'assets/css/nestable.css', __FILE__ ), false, false, 'all' );
-        wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', false, false, 'all' );
+        wp_enqueue_style( 'font-awesome', plugins_url( 'assets/css/font-awesome.css', __FILE__ ), false, false, 'all' );
         wp_enqueue_style( 'doc-style', plugins_url( 'assets/css/doc.css', __FILE__ ), false, false, 'all' );
     }
 
