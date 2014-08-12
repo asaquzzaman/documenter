@@ -11,7 +11,7 @@
  */
 
 /**
- * Copyright (c) 2013 Asaquzzaman Mishu (email: joy.mishu@gmail.com). All rights reserved.
+ * Copyright (c) 2013 asaquzzaman (email: joy.mishu@gmail.com). All rights reserved.
  *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
