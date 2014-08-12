@@ -29,46 +29,12 @@ class DOC_Ajax {
 
     function section_delete() {
         check_ajax_referer( 'doc_nonce' );
-        wp_delete_post( $_POST['section_id'], true );
+        //wp_delete_post( $_POST['section_id'], true );
 
         ob_start();
             doc_get_section_menu( $_POST['doc_id'] );
-        wp_send_json_success( array('menu' => ob_get_clean() ) );
+        wp_send_json_success( array('menu' => ob_get_clean(), 'section_id' => $_POST['section_id'] ) );
     }
-
-/*
-array (size=3)
-  'action' => string 'menu_rearrange' (length=14)
-  'menu' =>
-    array (size=7)
-      0 =>
-        array (size=2)
-          'li_id' => string '1988' (length=4)
-          'parent_id' => string '0' (length=1)
-      1 =>
-        array (size=2)
-          'li_id' => string '1986' (length=4)
-          'parent_id' => string '1988' (length=4)
-      2 =>
-        array (size=2)
-          'li_id' => string '1991' (length=4)
-          'parent_id' => string '1988' (length=4)
-      3 =>
-        array (size=2)
-          'li_id' => string '1989' (length=4)
-          'parent_id' => string '1986' (length=4)
-      4 =>
-        array (size=2)
-          'li_id' => string '1990' (length=4)
-          'parent_id' => string '1989' (length=4)
-      5 =>
-        array (size=2)
-          'li_id' => string '1992' (length=4)
-          'parent_id' => string '0' (length=1)
-      6 =>
-        array (size=2)
-          'li_id' => string '1987' (length=4)
-          'parent_id' => string '0' (length=1)*/
 
     function menu_rearrange() {
         check_ajax_referer( 'doc_nonce' );
@@ -148,7 +114,7 @@ array (size=3)
             $post_id = wp_insert_post( $args );
             $menu = get_post_meta( $doc_id, '_documenter_menu', true );
             if ( empty($menu) ) {
-                $new_menu = array(
+                $menu = array(
                     'child' => array(),
                     'parent' => array( $post_id => $post_id )
                 );

@@ -26,3 +26,18 @@
 .doc-clear {
 	clear: both;
 }
+.doc-section-wrap .doc-section-title {
+	font-size: 1.7em;
+    height: 1.7em;
+    line-height: 100%;
+    margin: 9px 0 15px;
+    outline: 0 none;
+    padding: 3px 8px;
+    width: 100%;
+}
+
+.doc-section-wrap .doc-section-submit,
+.doc-section-wrap .doc-udate-section-submit,
+.doc-section-wrap .doc-cancel-section-submit{
+	margin-top: 15px;
+}

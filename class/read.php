@@ -16,6 +16,12 @@ class DOC_Read {
 
     function read_document( $atts ) {
         extract( shortcode_atts( array('doc_id' => 0 ), $atts ) );
+
+        if ( empty( $doc_id ) ) {
+            echo 'No Documentation Found!';
+            return;
+        }
+
         $section = doc_get_section( $doc_id );
         $menu = doc_get_menu_meta($doc_id);
         ob_start();

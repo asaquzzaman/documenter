@@ -56,18 +56,9 @@
 }
 
 .doc-read-menu ol a{
-
+	color: #000;
 }
-
-.doc-read-menu ol li:hover > ol {
-	/* display: block; */
-}
-
-.doc-read-menu ol li:hover > ol li {
-	/* margin: 0;
-	    padding: 0; */
-}
-.doc-section-title {
+.doc-section-title, .doc-title {
 	margin-top: 0 !important;
 	padding-top: 0 !important;
 }

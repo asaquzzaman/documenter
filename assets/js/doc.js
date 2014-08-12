@@ -3,13 +3,11 @@
         init: function() {
             this.sectionMenu();
             $('.doc-section-wrap').on( 'click', '.doc-section-submit', this.newSectionForm );
+            $('.doc-section-wrap').on( 'click', '.doc-udate-section-submit', this.newSectionForm );
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-delete', this.SectionDelete );
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-edit', this.SectionEdit );
-            this.initContent();
-
-                this.docScroll();
-
-
+            $('.doc-section-wrap').on( 'click', '.doc-cancel-section-submit', this.updateSectionCancel );
+            this.docScroll();
 
         },
 
@@ -81,11 +79,6 @@
 
         },
 
-        initContent: function() {
-            $('input[name="section_title"]').val('').attr('placeholder', 'Section Title');
-            //$('.doc-section-wrap').find('textarea[name="section_desc"]').html('Section Description');
-        },
-
         SectionEdit: function() {
             var self = $(this),
                 data = {
@@ -99,6 +92,9 @@
                 $('input[name="section_ID"]').val(res.data.post.ID);
                 $('input[name="section_title"]').val(res.data.post.post_title);
                 $('.doc-section-wrap').find('iframe').contents().find('body').html(res.data.post.post_content);
+                $('.doc-section-wrap .doc-section-submit').hide();
+                $('.doc-section-wrap .doc-udate-section-submit').show();
+                $('.doc-section-wrap .doc-cancel-section-submit').show();
                 //$('textarea[name="section_desc"]').html(res.data.post.post_content);
             });
         },
@@ -116,6 +112,11 @@
                 };
             $.post(doc.ajax_url, data, function(res) {
                 Documentation.menuDeligation(res);
+
+                if ( $('input[name="section_ID"]').val() == res.data.section_id ) {
+
+                    Documentation.updateSectionCancel();
+                }
             });
         },
 
@@ -205,6 +206,22 @@
 
         },
 
+        updateSectionCancel: function(e) {
+            if (typeof e != 'undefined') {
+                e.preventDefault();
+            }
+            var title_field = $('input[name="section_title"]'),
+                content_field = $('textarea[name="section_desc"]');
+            $('input[name="section_ID"]').val(''),
+            title_field.val('');
+            $('.doc-section-wrap').find('iframe').contents().find('body').html('Section Description...');
+            content_field.html('');
+            title_field.attr( 'placeholder','Section Title' );
+            $('.doc-section-wrap .doc-section-submit').show();
+            $('.doc-section-wrap .doc-udate-section-submit').hide();
+            $('.doc-section-wrap .doc-cancel-section-submit').hide();
+        },
+
         newSectionForm: function(e) {
             e.preventDefault();
             var title_field = $('input[name="section_title"]'),
@@ -233,6 +250,10 @@
                     title_field.attr( 'placeholder','Section Title' );
 
                     Documentation.menuDeligation(res);
+
+                    $('.doc-section-wrap .doc-section-submit').show();
+                    $('.doc-section-wrap .doc-udate-section-submit').hide();
+                    $('.doc-section-wrap .doc-cancel-section-submit').hide();
 
                 }
             });

@@ -4,6 +4,11 @@
     </div>
 
     <div class="doc-read-content">
+        <?php $document = get_post($doc_id); ?>
+        <div class="doc-content-wrap">
+            <h1 class="doc-title"><?php echo $document->post_title; ?></h1>
+            <div class="doc-content"><?php echo $document->post_content;?></div>
+        </div>
         <?php
             foreach ( $menu['parent'] as $post_id ) {
                 if ( isset($section[$post_id]) ) {
