@@ -95,7 +95,6 @@
                 $('.doc-section-wrap .doc-section-submit').hide();
                 $('.doc-section-wrap .doc-udate-section-submit').show();
                 $('.doc-section-wrap .doc-cancel-section-submit').show();
-                //$('textarea[name="section_desc"]').html(res.data.post.post_content);
             });
         },
 

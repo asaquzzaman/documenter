@@ -6,7 +6,7 @@
 }
 .doc-read-content {
 	width: 50%;
-	margin-left: 1%;
+	margin-left: 10px;
 }
 .doc-clear {
 	clear: both;
@@ -64,5 +64,5 @@
 }
 
 .doc-read-content-scroll {
-	margin-left: 35.7%;
+	margin-left: 227px;
 }
