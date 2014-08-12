@@ -10,7 +10,7 @@ License: GPLv2 or later
 Instant switching between user accounts in WordPress.
 
 == Description ==
-	Manage your organization, industry, office, task and assign task with the help of this plugin.
+	You can create you documentation, book, text and note very easily with the help of this plugin
 
 == Installation ==
 
