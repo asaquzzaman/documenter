@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Wp Documenter
+ * Plugin Name: WP Documenter
  * Plugin URI:
- * Description: Documentation and Book is now easy way
+ * Description: Documentation is now easy way
  * Author: asaquzzaman
  * Version: 0.1
  * Author URI: http://mishubd.com
@@ -60,7 +60,9 @@ function doc_autoload( $class ) {
     }
 }
 spl_autoload_register( 'doc_autoload' );
+
 require_once dirname( __FILE__ ) . '/include/' . 'function.php';
+
 class Wp_doc {
 	function __construct() {
         $this->instantiate();
@@ -68,7 +70,6 @@ class Wp_doc {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'rad_scripts' ) );
-
 	}
 
     function rad_scripts() {
@@ -76,14 +77,12 @@ class Wp_doc {
         wp_enqueue_style( 'doc-read', plugins_url( 'assets/css/read.css', __FILE__ ), false, false, 'all' );
         wp_enqueue_script( 'lockfixed-sticky-scroll', plugins_url( 'assets/js/stickyMojo.js', __FILE__ ), array( 'jquery' ), false, true );
         wp_enqueue_script( 'doc-scri', plugins_url( 'assets/js/jquery.jpanelmenu.js', __FILE__ ), array( 'jquery' ), false, true );
-        wp_enqueue_script( 'doc-scripts', plugins_url( 'assets/js/doc.js', __FILE__ ), array( 'jquery' ), false, true );
-
+        wp_enqueue_script( 'doc-read', plugins_url( 'assets/js/read.js', __FILE__ ), array( 'jquery' ), false, true );
     }
 
 	function admin_menu() {
 		$capability = 'read';
 		$menu = add_menu_page( __( 'Documenter', 'wpuf' ), __( 'Documenter', 'wpuf' ), $capability, 'doc-documenter', array($this, 'admin_page_handler'), 'dashicons-exerpt-view' );
-
 	}
 
     function scripts() {
@@ -109,7 +108,6 @@ class Wp_doc {
     }
 
 	function register_post_type() {
-
 		register_post_type( 'doc_documenter', array(
             'label' => __( 'documenter', 'doc' ),
             'description' => __( 'documenter', 'doc' ),
@@ -141,7 +139,40 @@ class Wp_doc {
                 'not_found_in_trash' => __( 'No documenter Found in Trash', 'doc' ),
                 'parent' => __( 'Parent documenter', 'doc' ),
             ),
-        ) );
+        ));
+
+        register_post_type( 'doc_section', array(
+            'label' => __( 'section', 'doc' ),
+            'description' => __( 'section', 'doc' ),
+            'public' => false,
+            'show_in_admin_bar' => false,
+            'exclude_from_search' => true,
+            'publicly_queryable' => false,
+            'show_in_admin_bar' => false,
+            'show_ui' => true,
+            'show_in_menu' => 'doc-section', //false,
+            'capability_type' => 'post',
+            'hierarchical' => false,
+            'rewrite' => array('slug' => 'doc_section'),
+            'query_var' => true,
+            'supports' => array('title', 'editor'),
+            'labels' => array(
+                'name' => __( 'section', 'doc' ),
+                'singular_name' => __( 'section', 'doc' ),
+                'menu_name' => __( 'section', 'doc' ),
+                'add_new' => __( 'Add section', 'doc' ),
+                'add_new_item' => __( 'Add New section', 'doc' ),
+                'edit' => __( 'Edit', 'doc' ),
+                'edit_item' => __( 'Edit section', 'doc' ),
+                'new_item' => __( 'New section', 'doc' ),
+                'view' => __( 'View section', 'doc' ),
+                'view_item' => __( 'View section', 'doc' ),
+                'search_items' => __( 'Search section', 'doc' ),
+                'not_found' => __( 'No section Found', 'doc' ),
+                'not_found_in_trash' => __( 'No section Found in Trash', 'doc' ),
+                'parent' => __( 'Parent section', 'doc' ),
+            ),
+        ));
 	}
 }
 

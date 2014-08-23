@@ -22,6 +22,7 @@ function doc_get_section( $doc_id ) {
     );
 
     $posts = get_posts( $args );
+    $section = array();
     foreach ( $posts as $key => $post ) {
         $section[$post->ID] = $post;
     }
@@ -36,7 +37,7 @@ function doc_get_section_menu( $doc_id ) {
     $menu = doc_get_menu_meta($doc_id);
     $section = doc_get_section( $doc_id );
 
-
+    $menu['parent'] = isset( $menu['parent'] ) ? $menu['parent'] : array();
     ?>
     <div class="doc-dd" id="doc-nestable">
         <ol class="doc-dd-list">

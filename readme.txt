@@ -2,15 +2,15 @@
 
 Contributors: asaquzzaman
 Tags: Documenter, Documentation, Book, Text, Note
-Requires at least: 3.1
+Requires at least: 3.9
 Tested up to: 3.9
 Stable tag: 0.1
 License: GPLv2 or later
 
-Instant switching between user accounts in WordPress.
+Documentation is now easy way.
 
 == Description ==
-	Manage your organization, industry, office, task and assign task with the help of this plugin.
+	Create your documentation and document's single page template for frontend.
 
 == Installation ==
 

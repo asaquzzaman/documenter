@@ -2,81 +2,21 @@
     var Documentation = {
         init: function() {
             this.sectionMenu();
+            this.buttonControl();
             $('.doc-section-wrap').on( 'click', '.doc-section-submit', this.newSectionForm );
             $('.doc-section-wrap').on( 'click', '.doc-udate-section-submit', this.newSectionForm );
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-delete', this.SectionDelete );
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-edit', this.SectionEdit );
             $('.doc-section-wrap').on( 'click', '.doc-cancel-section-submit', this.updateSectionCancel );
-            this.docScroll();
-
         },
 
-        docScroll: function() {
-
-            if ( !$('.doc-read-menu').length ) {
-                return;
+        buttonControl: function() {
+            var section_id = $('input[name="section_ID"]').val();
+            if ( typeof section_id !== "undefined" && section_id !== '' ) {
+                $('.doc-section-wrap .doc-section-submit').hide();
+                $('.doc-section-wrap .doc-udate-section-submit').show();
+                $('.doc-section-wrap .doc-cancel-section-submit').show();
             }
-            var menu_lis = $('.doc-read-menu').find('li'),
-                li_id = [];
-            $.each( menu_lis, function( index, value ) {
-                li_id.push( $(value).data('id') );
-            });
-
-
-
-            $(window).scroll( function() {
-                var self = $(this),
-                    window_top = self.scrollTop(),
-                    menu_content_wrap = $('.doc-read-menu'),
-                    menu_content = menu_content_wrap.offset().top,
-                    menu_content_height = menu_content_wrap.outerHeight(),
-                    read_content_wrap = $('.doc-read-content'),
-                    read_content = read_content_wrap.offset().top,
-                    offset_bottom = $('.doc-offset-bottom').offset().top - menu_content_height;
-
-
-                if ( window_top >= read_content && window_top <= offset_bottom ) {
-                    menu_content_wrap.css({
-                        position : 'fixed',
-                        top : 0,
-                    });
-                    read_content_wrap.addClass('doc-read-content-scroll');
-                } else if (window_top > offset_bottom ) {
-                    menu_content_wrap.css({
-                        position : 'fixed',
-                        top : offset_bottom - window_top,
-                    });
-                }
-                else {
-
-                    menu_content_wrap.removeAttr('style');
-                    read_content_wrap.removeClass('doc-read-content-scroll');
-                }
-
-                $.each( li_id, function( index, menu ) {
-
-                    var item_number = $('.doc-read-menu').find('.doc-item-'+menu ),
-                        item_number_height = item_number.outerHeight(),
-                        content_top = $('.doc-read-content').find( '.doc-menu-id-'+menu ).offset().top-5;
-
-                    if ( window_top > content_top ) {
-
-                        menu_lis.not(item_number).find('.doc-menu-text-wrap').removeAttr('style');
-                        menu_lis.not(item_number).find('.doc-menu-text-wrap').find('a').removeAttr('style');
-
-                        item_number.find('.doc-menu-text-wrap').first().css({
-                            'background': '#BCBCBC',
-                            'border-left' : '2px solid #000',
-                        });
-                        item_number.find('.doc-menu-text-wrap').first().find('a').css({
-                            'color' : '#fff'
-                        });
-
-                    }
-                })
-            });
-
-
         },
 
         SectionEdit: function() {
@@ -95,6 +35,9 @@
                 $('.doc-section-wrap .doc-section-submit').hide();
                 $('.doc-section-wrap .doc-udate-section-submit').show();
                 $('.doc-section-wrap .doc-cancel-section-submit').show();
+
+                var content_wrap = $('.doc-section-menu-wrap').offset().top+180;
+                Documentation.scroll(content_wrap);
             });
         },
 
@@ -209,6 +152,7 @@
             if (typeof e != 'undefined') {
                 e.preventDefault();
             }
+
             var title_field = $('input[name="section_title"]'),
                 content_field = $('textarea[name="section_desc"]');
             $('input[name="section_ID"]').val(''),
@@ -240,9 +184,11 @@
                 section_id: $('input[name="section_ID"]').val(),
                 _wpnonce: doc._wpnonce
             }
-
+            $('.doc-spinner-section').addClass('doc-spinner');
             $.post( doc.ajax_url, data, function( res ) {
+                $('.doc-spinner-section').removeClass('doc-spinner');
                 if( res.success ) {
+                    $('input[name="section_ID"]').val('');
                     title_field.val('');
                     $('.doc-section-wrap').find('iframe').contents().find('body').html('Section Description...');
                     content_field.html('');
@@ -254,8 +200,28 @@
                     $('.doc-section-wrap .doc-udate-section-submit').hide();
                     $('.doc-section-wrap .doc-cancel-section-submit').hide();
 
+                    var section_menu_top = $('#doc-metabox-section-menu').offset().top-100,
+                        section_update_wrap = $('.doc-success-section');
+
+                    section_update_wrap.addClass('doc-section-update');
+                    section_update_wrap.html(res.data.msg).show();
+
+                    Documentation.scroll(section_menu_top);
+
+                    setTimeout(function() {
+                        section_update_wrap.fadeOut('500', function() {
+                            section_update_wrap.removeClass('doc-section-update');
+                        }).html('');
+
+                    }, 3000);
                 }
             });
+        },
+
+        scroll: function($scrolltop) {
+            $('body,html').animate({
+                scrollTop: $scrolltop
+            }, 800);
         }
     }
 
