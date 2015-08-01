@@ -63,7 +63,7 @@ class DOC_Admin_Admin_doc {
 			<input type="hidden" name="section_ID" value="">
 			<input type="text" class="doc-section-title"  value="" placeholder="<?php _e( 'Section Title', 'doc' ); ?>" size="30" name="section_title">
 
-			<?php wp_editor( __( 'Section Description', 'doc' ), 'doc-section-editor', array( 'textarea_name' => 'section_desc' ) ); ?>
+			<?php wp_editor( __( '', 'doc' ), 'doc-section-editor', array( 'textarea_name' => 'section_desc' ) ); ?>
 
 			<a href="#" class="button button-primary doc-section-submit"><?php _e( 'New Section', 'doc' ); ?></a>
 			<a href="#" style="display: none;" class="button button-primary doc-udate-section-submit"><?php _e( 'Update Section', 'doc' ); ?></a>

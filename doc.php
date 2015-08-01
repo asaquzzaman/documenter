@@ -4,7 +4,7 @@
  * Plugin URI:
  * Description: Documentation is now easy way
  * Author: asaquzzaman
- * Version: 0.1
+ * Version: 0.2
  * Author URI: http://mishubd.com
  * License: GPL2
  * TextDomain: doc
@@ -75,8 +75,8 @@ class Wp_doc {
     function rad_scripts() {
         wp_enqueue_script( 'jquery' );
         wp_enqueue_style( 'doc-read', plugins_url( 'assets/css/read.css', __FILE__ ), false, false, 'all' );
-        wp_enqueue_script( 'lockfixed-sticky-scroll', plugins_url( 'assets/js/stickyMojo.js', __FILE__ ), array( 'jquery' ), false, true );
-        wp_enqueue_script( 'doc-scri', plugins_url( 'assets/js/jquery.jpanelmenu.js', __FILE__ ), array( 'jquery' ), false, true );
+        //wp_enqueue_script( 'lockfixed-sticky-scroll', plugins_url( 'assets/js/stickyMojo.js', __FILE__ ), array( 'jquery' ), false, true );
+       // wp_enqueue_script( 'doc-scri', plugins_url( 'assets/js/jquery.jpanelmenu.js', __FILE__ ), array( 'jquery' ), false, true );
         wp_enqueue_script( 'doc-read', plugins_url( 'assets/js/read.js', __FILE__ ), array( 'jquery' ), false, true );
     }
 
