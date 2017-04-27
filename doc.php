@@ -4,7 +4,7 @@
  * Plugin URI:
  * Description: Documentation is now easy way
  * Author: asaquzzaman
- * Version: 0.2
+ * Version: 0.3
  * Author URI: http://mishubd.com
  * License: GPL2
  * TextDomain: doc
@@ -75,14 +75,13 @@ class Wp_doc {
     function rad_scripts() {
         wp_enqueue_script( 'jquery' );
         wp_enqueue_style( 'doc-read', plugins_url( 'assets/css/read.css', __FILE__ ), false, false, 'all' );
-        //wp_enqueue_script( 'lockfixed-sticky-scroll', plugins_url( 'assets/js/stickyMojo.js', __FILE__ ), array( 'jquery' ), false, true );
-       // wp_enqueue_script( 'doc-scri', plugins_url( 'assets/js/jquery.jpanelmenu.js', __FILE__ ), array( 'jquery' ), false, true );
         wp_enqueue_script( 'doc-read', plugins_url( 'assets/js/read.js', __FILE__ ), array( 'jquery' ), false, true );
+        wp_enqueue_script( 'doc-scroll', plugins_url( 'assets/js/animatescroll.js', __FILE__ ), array( 'jquery' ), false, true );
     }
 
 	function admin_menu() {
 		$capability = 'read';
-		$menu = add_menu_page( __( 'Documenter', 'wpuf' ), __( 'Documenter', 'wpuf' ), $capability, 'doc-documenter', array($this, 'admin_page_handler'), 'dashicons-exerpt-view' );
+		$menu = add_menu_page( __( 'Documenter', 'doc' ), __( 'Documenter', 'doc' ), $capability, 'doc-documenter', array($this, 'admin_page_handler'), 'dashicons-exerpt-view' );
 	}
 
     function scripts() {
@@ -105,6 +104,12 @@ class Wp_doc {
         DOC_Admin_Admin_doc::getInstance();
         DOC_Ajax::getInstance();
         DOC_Read::getInstance();
+    }
+
+    function admin_page_handler() {
+        if ( isset($_GET['page']) && $_GET['page'] == 'doc-support' ) {
+            require_once dirname (__FILE__) . '/views/support.php';
+        }
     }
 
 	function register_post_type() {

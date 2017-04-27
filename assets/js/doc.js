@@ -2,7 +2,7 @@
     var Documentation = {
         init: function() {
             this.sectionMenu();
-            this.buttonControl();
+            this.buttonControl();doc-section-edit
             $('.doc-section-wrap').on( 'click', '.doc-section-submit', this.newSectionForm );
             $('.doc-section-wrap').on( 'click', '.doc-udate-section-submit', this.newSectionForm );
             $('#doc-metabox-section-menu').on( 'click', '.doc-section-delete', this.SectionDelete );

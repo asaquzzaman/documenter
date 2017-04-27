@@ -35,7 +35,7 @@ class DOC_Read {
                 ?>
                 <div class="doc-menu-id-<?php echo $id; ?>" id="doc-cotent-id-<?php echo $id; ?>">
                     <h1 class="doc-section-title"><?php echo $section[$id]->post_title; ?></h1>
-                    <div><?php echo $section[$id]->post_content; ?></div>
+                    <div><?php echo do_shortcode( $section[$id]->post_content ); ?></div>
                 </div>
                 <?php
                 if ( array_key_exists( $id, $menu_child ) ) {

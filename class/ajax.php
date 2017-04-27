@@ -23,6 +23,7 @@ class DOC_Ajax {
     function section_edit() {
         check_ajax_referer( 'doc_nonce' );
         $post = get_post( $_POST['section_id'] );
+
         wp_send_json_success( array( 'post' => $post ) );
     }
 

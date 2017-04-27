@@ -4,7 +4,7 @@ Contributors: asaquzzaman
 Tags: Documenter, Documentation, Book, Text, Note
 Requires at least: 3.9
 Tested up to: 3.9
-Stable tag: 0.1
+Stable tag: trunk
 License: GPLv2 or later
 
 Documentation is now easy way.

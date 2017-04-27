@@ -2,7 +2,21 @@
 	var DocRead = {
 		init: function() {
 			this.docScroll();
+            $('.doc-section-edit').on( 'click', '.doc-menu-item', this.scrollToContent );
 		},
+
+        scrollToContent: function(e) {
+            e.preventDefault();
+
+
+            var self = $(this),
+                content_id = self.data('id');
+                $( "#"+content_id ).animatescroll();
+            $('body,html').animate({
+                scroll: $( "#"+content_id ).offset().top
+            }, 1000);
+        },
+
         docScroll: function() {
 
             if ( !$('.doc-read-menu').length ) {
