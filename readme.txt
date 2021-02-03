@@ -22,6 +22,7 @@ Browser Compatibility
     1. Google Chrome
     2. Firefox.
 
+
 = Usage =
     Create documentation from Documenter menu and add the shortcode [doc_documenter doc_id="your documenter id"]
 
